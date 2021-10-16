@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/collision3.mp3-118284e0c45846697667d5876917bbcf.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/collision3.mp3"
+dest_files=[ "res://.import/collision3.mp3-118284e0c45846697667d5876917bbcf.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
