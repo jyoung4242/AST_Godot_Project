@@ -1,0 +1,402 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/border.svg" type="Texture" id=1]
+[ext_resource path="res://assets/oldfont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://HUD.gd" type="Script" id=3]
+[ext_resource path="res://assets/damagehud.png" type="Texture" id=4]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://assets/Emulogic-zrEw.ttf"
+
+[sub_resource type="DynamicFont" id=6]
+size = 34
+outline_color = Color( 0.105882, 0.678431, 0.0862745, 1 )
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFontData" id=7]
+font_path = "res://assets/Emulogic-zrEw.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+font_data = SubResource( 7 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 8
+font_data = SubResource( 7 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 10
+font_data = SubResource( 7 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "showdamage"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="SCORELIVES" type="MarginContainer" parent="."]
+modulate = Color( 1, 1, 1, 0.752941 )
+margin_left = 8.74011
+margin_top = 8.74011
+margin_right = 198.74
+margin_bottom = 87.7401
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="SCORELIVES"]
+margin_right = 189.0
+margin_bottom = 78.0
+texture = ExtResource( 1 )
+patch_margin_left = 25
+patch_margin_top = 25
+patch_margin_right = 25
+patch_margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SCORELIVES"]
+margin_right = 189.0
+margin_bottom = 78.0
+alignment = 1
+
+[node name="Score" type="HBoxContainer" parent="SCORELIVES/VBoxContainer"]
+margin_top = 21.0
+margin_right = 189.0
+margin_bottom = 37.0
+alignment = 1
+
+[node name="TITLE" type="Label" parent="SCORELIVES/VBoxContainer/Score"]
+margin_left = 50.0
+margin_right = 122.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 2 )
+text = "SCORE:"
+
+[node name="VALUE" type="Label" parent="SCORELIVES/VBoxContainer/Score"]
+margin_left = 126.0
+margin_right = 138.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 2 )
+text = "0"
+
+[node name="Lives" type="HBoxContainer" parent="SCORELIVES/VBoxContainer"]
+margin_top = 41.0
+margin_right = 189.0
+margin_bottom = 57.0
+alignment = 1
+
+[node name="TITLE" type="Label" parent="SCORELIVES/VBoxContainer/Lives"]
+margin_left = 50.0
+margin_right = 122.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 2 )
+text = "Lives:"
+
+[node name="VALUE" type="Label" parent="SCORELIVES/VBoxContainer/Lives"]
+margin_left = 126.0
+margin_right = 138.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 2 )
+text = "1"
+
+[node name="LEVELMESSAGE" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -95.0
+margin_top = -125.0
+margin_right = 95.0
+margin_bottom = -40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LEVEL" type="HBoxContainer" parent="LEVELMESSAGE"]
+margin_right = 190.0
+margin_bottom = 85.0
+alignment = 1
+
+[node name="TITLE" type="Label" parent="LEVELMESSAGE/LEVEL"]
+margin_left = 57.0
+margin_top = 34.0
+margin_right = 117.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 2 )
+text = "LEVEL"
+
+[node name="VALUE" type="Label" parent="LEVELMESSAGE/LEVEL"]
+margin_left = 121.0
+margin_top = 34.0
+margin_right = 133.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 2 )
+text = "1"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="LEVELMESSAGE"]
+margin_right = 190.0
+margin_bottom = 85.0
+texture = ExtResource( 1 )
+patch_margin_left = 25
+patch_margin_top = 25
+patch_margin_right = 25
+patch_margin_bottom = 25
+
+[node name="TITLE" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -250.0
+margin_right = 300.0
+margin_bottom = -80.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="TITLE"]
+margin_right = 600.0
+margin_bottom = 170.0
+texture = ExtResource( 1 )
+patch_margin_left = 25
+patch_margin_top = 25
+patch_margin_right = 25
+patch_margin_bottom = 25
+
+[node name="TITLE" type="Label" parent="TITLE"]
+margin_top = 63.0
+margin_right = 600.0
+margin_bottom = 107.0
+custom_fonts/font = SubResource( 6 )
+text = "ASTEROIDS PLUS!!"
+align = 1
+
+[node name="STARTMESSAGE" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -210.0
+margin_top = -39.5
+margin_right = 210.0
+margin_bottom = 39.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="START" type="HBoxContainer" parent="STARTMESSAGE"]
+margin_right = 460.0
+margin_bottom = 79.0
+alignment = 1
+
+[node name="MESSAGE" type="Label" parent="STARTMESSAGE/START"]
+margin_left = 92.0
+margin_top = 31.0
+margin_right = 368.0
+margin_bottom = 47.0
+custom_fonts/font = ExtResource( 2 )
+text = "PRESS SPACEBAR TO BEGIN"
+align = 1
+valign = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="STARTMESSAGE"]
+margin_right = 460.0
+margin_bottom = 79.0
+texture = ExtResource( 1 )
+patch_margin_left = 25
+patch_margin_top = 25
+patch_margin_right = 25
+patch_margin_bottom = 25
+
+[node name="AMMO" type="MarginContainer" parent="."]
+modulate = Color( 1, 1, 1, 0.752941 )
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 10.0
+margin_top = -200.0
+margin_right = 145.0
+margin_bottom = -250.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="AMMO"]
+margin_right = 135.0
+margin_bottom = 50.0
+texture = ExtResource( 1 )
+patch_margin_left = 25
+patch_margin_top = 25
+patch_margin_right = 25
+patch_margin_bottom = 25
+
+[node name="AMMO" type="HBoxContainer" parent="AMMO"]
+margin_right = 135.0
+margin_bottom = 50.0
+alignment = 1
+
+[node name="TITLE" type="Label" parent="AMMO/AMMO"]
+margin_left = 17.0
+margin_top = 15.0
+margin_right = 97.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 2 )
+text = "AMMO:"
+uppercase = true
+
+[node name="VALUE" type="Label" parent="AMMO/AMMO"]
+margin_left = 101.0
+margin_top = 20.0
+margin_right = 117.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 3 )
+text = "25"
+
+[node name="HEALTH" type="MarginContainer" parent="."]
+modulate = Color( 1, 1, 1, 0.752941 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -172.0
+margin_top = -198.74
+margin_right = -10.0
+margin_bottom = -148.74
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HEALTH"]
+margin_right = 162.0
+margin_bottom = 50.0
+texture = ExtResource( 1 )
+patch_margin_left = 25
+patch_margin_top = 25
+patch_margin_right = 25
+patch_margin_bottom = 25
+
+[node name="HEALTH" type="HBoxContainer" parent="HEALTH"]
+margin_right = 162.0
+margin_bottom = 50.0
+alignment = 1
+
+[node name="TITLE" type="Label" parent="HEALTH/HEALTH"]
+margin_left = 19.0
+margin_top = 15.0
+margin_right = 131.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 2 )
+text = "HEALTH:"
+uppercase = true
+
+[node name="VALUE" type="Label" parent="HEALTH/HEALTH"]
+margin_left = 135.0
+margin_top = 20.0
+margin_right = 143.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 3 )
+text = "5"
+
+[node name="CONTROLS" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = 50.0
+margin_right = 200.0
+margin_bottom = 180.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CONTROLS"]
+margin_right = 400.0
+margin_bottom = 130.0
+texture = ExtResource( 1 )
+patch_margin_left = 25
+patch_margin_top = 25
+patch_margin_right = 25
+patch_margin_bottom = 25
+
+[node name="CONTROLS" type="HBoxContainer" parent="CONTROLS"]
+margin_right = 400.0
+margin_bottom = 130.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CONTROLS/CONTROLS"]
+margin_left = 65.0
+margin_right = 335.0
+margin_bottom = 130.0
+alignment = 1
+
+[node name="TITLE" type="Label" parent="CONTROLS/CONTROLS/VBoxContainer"]
+margin_top = 20.0
+margin_right = 270.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 2 )
+text = "CONTROLS"
+align = 1
+uppercase = true
+
+[node name="VALUE" type="Label" parent="CONTROLS/CONTROLS/VBoxContainer"]
+margin_top = 44.0
+margin_right = 270.0
+margin_bottom = 109.0
+custom_fonts/font = SubResource( 4 )
+text = "ARROWS: UP/DOWN - THROTTLE
+ARROWS: LEFT/RIGHT - ROTATE
+SPACE BAR: FIRE/START GAME
+Backslash: Toggle Music"
+align = 1
+valign = 2
+
+[node name="DamageRect" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DamageRect"]
+anims/showdamage = SubResource( 5 )
+
+[node name="VERSION" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -15.0
+margin_right = 104.0
+margin_bottom = -1.0
+custom_fonts/font = SubResource( 3 )
+text = "versionstring"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="messageTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="blinkTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="stateTimer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[connection signal="timeout" from="messageTimer" to="." method="_on_messageTimer_timeout"]
+[connection signal="timeout" from="blinkTimer" to="." method="_on_blinkTimer_timeout"]
+[connection signal="timeout" from="stateTimer" to="." method="_on_stateTimer_timeout"]

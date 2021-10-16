@@ -1,0 +1,80 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://assets/modifiedspacebg.jpg" type="Texture" id=1]
+[ext_resource path="res://Playership.tscn" type="PackedScene" id=2]
+[ext_resource path="res://asteroid1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://asteroid.tscn" type="PackedScene" id=4]
+[ext_resource path="res://playerBullet.tscn" type="PackedScene" id=5]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=6]
+[ext_resource path="res://main.gd" type="Script" id=7]
+[ext_resource path="res://playerfire.mp3" type="AudioStream" id=8]
+[ext_resource path="res://assets/audio/bgm.mp3" type="AudioStream" id=9]
+[ext_resource path="res://CameraShake.tscn" type="PackedScene" id=10]
+[ext_resource path="res://puff.tscn" type="PackedScene" id=11]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -1.17694, -1.37175, 0, 0, 0, 0, 1023.03, 0.112289, 0, 0, 0, 0, 1023.56, 600.055, 0, 0, 0, 0, -0.481262, 599.853, 0, 0, 0, 0, -1.17694, -1.37175 )
+}
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 7 )
+asteroid = ExtResource( 4 )
+asteroid1 = ExtResource( 3 )
+playerbullet = ExtResource( 5 )
+puff = ExtResource( 11 )
+player = ExtResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HUD" parent="." instance=ExtResource( 6 )]
+
+[node name="objectSpawning" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="objectSpawnPosition" type="PathFollow2D" parent="objectSpawning"]
+position = Vector2( -1.17694, -1.37175 )
+rotation = 0.00144896
+
+[node name="object spawn" type="Timer" parent="."]
+one_shot = true
+
+[node name="player_fire" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+
+[node name="bgm" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+
+[node name="camera" parent="." instance=ExtResource( 10 )]
+
+[node name="startingposition" type="Position2D" parent="."]
+position = Vector2( 512, 300 )
+
+[node name="gameOverTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="AmmoRegenTimer" type="Timer" parent="."]
+wait_time = 0.75
+autostart = true
+
+[node name="PlayerDiedTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="start_level" from="HUD" to="." method="_on_HUD_start_level"]
+[connection signal="timeout" from="object spawn" to="." method="spawn_object"]
+[connection signal="timeout" from="gameOverTimer" to="." method="_on_gameOver_timeout"]
+[connection signal="timeout" from="gameOverTimer" to="HUD" method="_on_gameOver_timeout"]
+[connection signal="timeout" from="AmmoRegenTimer" to="." method="_on_AmmoRegenTimer_timeout"]
+[connection signal="timeout" from="PlayerDiedTimer" to="." method="_on_PlayerDiedTimer_timeout"]
